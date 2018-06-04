@@ -124,30 +124,68 @@ public class Canvas1 extends Canvas
         int[] xyeeeh;
         //nuevo=arbolDePitagoras(x1,x2,y2);  
     }
-    /*metodo de inicializacion*/
-    private void curvaDeKoch(){
+    private void curvaDeKock(int nivelActual, int nivelObjetivo){
+    
+    }
+    /*metodo del fractal dando un nivel*/
+    /*
+    private void curvaDeKoch(int nivel){
         int x1 = 350;
         int x2 = 650;
         int y1 = 500;
-        int y2 = 500;
-        line(x1, y1, x2, y2, Color.BLUE);        
+        int y2 = 500;        
+        Point2D[] puntos;
+        if( nivel == 0){
+        line(x1, y1, x2, y2, Color.BLUE);            
+        }
+        else if(nivel == 1){
+        line(x1, y1, x2, y2, Color.BLUE);                
         Point2D limiteIzquierdo = new Point2D(x1,y1);
         Point2D limiteDerecho = new Point2D(x2,y2);
-        curvaDeKoch(limiteIzquierdo, limiteDerecho);
+        curvaDeKoch(limiteIzquierdo, limiteDerecho, 5);
+        }
+        else{
+            curvaDeKoch(1);
+            
+            int aux =(int) Math.pow( 4, nivel );
+            Point2D puntos1 = new Point2D[aux]; 
+        
+        } 
+    }
+    */
+    /*metodo de animacion delfractal*/
+    private void curvaDeKoch(){        
+        int x1 = 350;
+        int x2 = 650;
+        int y1 = 500;
+        int y2 = 500;        
+        line(x1, y1, x2, y2, Color.BLUE);            
+        Point2D limiteIzquierdo = new Point2D(x1,y1);
+        Point2D limiteDerecho = new Point2D(x2,y2);
+        curvaDeKoch(limiteIzquierdo, limiteDerecho, 3);
+        
     }
     /* metodo para subir de nivel*/
     
-    private void curvaDeKoch(Point2D lIzq, Point2D lDer){
+    private void curvaDeKoch(Point2D lIzq, Point2D lDer, int niveles){
+      if( niveles > 0){         
+        niveles--;
+        
         Point2D puntoMedio = puntoMedio(lIzq, lDer);
         int distancia = distancia(lIzq, lDer);
         int redu = distancia/5;
         
         Point2D puntoArriba = pRelativY( puntoMedio, -redu);
-        Point2D puntoIzquierda = pRelativX(puntoMedio, -redu);
-        Point2D puntoDerecha = pRelativX(puntoMedio , redu);
+        Point2D puntoIzquierda = pRelativX( puntoMedio, -redu);
+        Point2D puntoDerecha = pRelativX( puntoMedio , redu);
         line(puntoArriba, puntoIzquierda, Color.BLUE);
         line(puntoArriba, puntoDerecha, Color.BLUE);
-        line(puntoIzquierda,puntoDerecha, Color.WHIT);
+        line(puntoIzquierda,puntoDerecha, Color.BLACK);
+        curvaDeKoch(lIzq,puntoDerecha,niveles-1);
+        curvaDeKoch(puntoIzquierda,puntoArriba,niveles-1);
+        curvaDeKoch(puntoArriba,puntoDerecha,niveles-1);
+        curvaDeKoch(puntoDerecha,lDer,niveles-1);
+      }
     }
     private void line(Point2D a, Point2D b, Color c){
         int x1 = a.getX();
