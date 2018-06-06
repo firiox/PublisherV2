@@ -37,6 +37,6 @@ comment7.params=points\ color
 comment7.target=void\ drawnPoint(java.util.ArrayList,\ int)
 comment8.params=x\ y\ c
 comment8.target=void\ circleTranslate(int,\ int,\ java.awt.Color)
-comment9.params=points\ pointNew\ angle
+comment9.params=points\ pointNew\ degrees
 comment9.target=java.util.ArrayList\ rote(java.util.ArrayList,\ Publisher.Library.Point2D,\ int)
 numComments=19

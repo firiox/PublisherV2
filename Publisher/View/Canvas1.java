@@ -42,23 +42,31 @@ public class Canvas1 extends Canvas
         //line(50,50,250,250,Color.BLUE);
         //arbolDePitagoras();
         curvaDeKoch();
-        int x = 2;
-        int y = 5;
-        int x1 =800;
-        int y1 = 600;
+        int x = 300;
+        int y = 400;
+        int x1 =600;
+        int y1 = 400;
         line = new LineBresemhan(new Point2D(x,y),new Point2D(x1,y1));
         line.drawLine();
         Color c = Color.GREEN;
         int color = c.getRGB();
+        int color2 = color.PURPLE.getRGB();
+        int color3 = Color.BLUE.getRGB();
         drawnPoint(line.getPoints(),color);
         ArrayList<Point2D> p = line.getPoints();
         int xk = 497;
-        int yk = 700;
+        int yk = 400;
         Point2D p1 = new Point2D(xk,yk);
-        int angle = 30;
-        line(x, y, x1, y1, Color.BLACK);
+        int angle = 25;
+        //line(x, y, x1, y1, Color.BLACK);
         ArrayList<Point2D> p2 = rote( p , p1 ,  angle);
+        ArrayList<Point2D> p3 = rote( p , p1 ,  1);
+        ArrayList<Point2D> p4 = rote( p , p1 ,  20);
+        //ArrayList<Point2D> p5 = rote( p , p1 ,  90);
         drawnPoint(p2, color);
+        drawnPoint(p3, color2);
+        drawnPoint(p4, color3);
+        //drawnPoint(p5, color);
     }
     
     public void paint(Graphics g){
@@ -112,13 +120,18 @@ public class Canvas1 extends Canvas
         }    
     }
     
-    private ArrayList<Point2D> rote(ArrayList<Point2D> points, Point2D pointNew, int angle){
+    private ArrayList<Point2D> rote(ArrayList<Point2D> points, Point2D pointNew, int degrees){
         int x, y;
         ArrayList<Point2D> aux = new ArrayList<Point2D>();
         Point2D pointAux;
+        double radians = Math.toRadians(degrees);
         for(Point2D point:points){
-            x = (int)(point.getX()*Math.cos(angle)) - (int)(point.getY()*Math.sin(angle));
-            y = (int)(point.getX()*Math.sin(angle)) + (int)(point.getY()*Math.cos(angle));
+            int xcos = (int)(point.getX()*Math.cos(radians));
+            int ysin = (int)(point.getY()*Math.sin(radians));
+            int xsin = (int)(point.getX()*Math.sin(radians));
+            int ycos = (int)(point.getY()*Math.cos(radians));
+            x = xcos - ysin;            
+            y = ysin + ycos;
             pointAux = new Point2D(x,y);
             aux.add(pointAux);
         }
