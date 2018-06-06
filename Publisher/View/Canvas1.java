@@ -42,6 +42,23 @@ public class Canvas1 extends Canvas
         //line(50,50,250,250,Color.BLUE);
         //arbolDePitagoras();
         curvaDeKoch();
+        int x = 2;
+        int y = 5;
+        int x1 =800;
+        int y1 = 600;
+        line = new LineBresemhan(new Point2D(x,y),new Point2D(x1,y1));
+        line.drawLine();
+        Color c = Color.GREEN;
+        int color = c.getRGB();
+        drawnPoint(line.getPoints(),color);
+        ArrayList<Point2D> p = line.getPoints();
+        int xk = 497;
+        int yk = 700;
+        Point2D p1 = new Point2D(xk,yk);
+        int angle = 30;
+        line(x, y, x1, y1, Color.BLACK);
+        ArrayList<Point2D> p2 = rote( p , p1 ,  angle);
+        drawnPoint(p2, color);
     }
     
     public void paint(Graphics g){
@@ -107,6 +124,8 @@ public class Canvas1 extends Canvas
         }
         return aux;
     }
+    
+    
     
     private void arbolDePitagoras(){
         int x, y, iniLado;
